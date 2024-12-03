@@ -18,7 +18,7 @@ router = APIRouter()
 
 # Define the root endpoint for checking API health or returning a message
 @router.get("/")
-def read_root():
+async def read_root():
     return {"message": "Welcome to the Student API!"}
 
 
@@ -31,7 +31,7 @@ def read_root():
 
 # Endpoint to get all students (with optional filters)
 @router.get("/students", response_model=list[Student])  # You can modify response model as needed
-def get_students(country: str = None, age: int = None):
+async def get_students(country: str = None, age: int = None):
     """
     Fetch students with optional filtering by country and age.
     """
@@ -59,7 +59,7 @@ def get_students(country: str = None, age: int = None):
 
 # Endpoint to get a single student by ID
 @router.get("/students/{id}", response_model=Student)
-def get_student(id: str):
+async def get_student(id: str):
     """
     Fetch a single student by their ID.
     """
@@ -86,7 +86,7 @@ def get_student(id: str):
 
 # POST: Create a new student
 @router.post("/students", response_model=Student)
-def create_student(student: Student):
+async def create_student(student: Student):
     """
     Create a new student in the database.
     """
@@ -115,7 +115,7 @@ from bson import ObjectId
 import logging
 
 # Helper function to serialize MongoDB documents
-def individual_serial1(student):
+async def individual_serial1(student):
     """
     Helper function to serialize the student document.
     """
@@ -124,7 +124,7 @@ def individual_serial1(student):
     return student
 
 @router.patch("/students/{id}", response_model=Student)
-def update_student(id: str, student: Student):
+async def update_student(id: str, student: Student):
     """
     Update a student's details by ID while preserving existing data for unset fields.
     """
@@ -210,7 +210,7 @@ def update_student(id: str, student: Student):
 
 # DELETE: Delete a student by ID
 @router.delete("/students/{id}", response_model=Student)
-def delete_student(id: str):
+async def delete_student(id: str):
     """
     Delete a student from the database by ID.
     """
