@@ -85,9 +85,6 @@ ml-dtypes==0.4.1
 mpmath==1.3.0
 mypy==1.11.2
 mypy-extensions==1.0.0
-mysql-client==0.0.1
-mysql-connector==2.2.9
-mysqlclient==2.2.0
 namex==0.0.8
 nbclient==0.10.0
 nbconvert==7.16.4
